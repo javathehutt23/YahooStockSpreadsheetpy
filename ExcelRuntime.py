@@ -2,14 +2,14 @@ import yahoo_fin.stock_info as si
 import datetime as dt
 from datetime import date
 import pandas as pd
+from pathlib import Path
 
-#path = "C:/Users/harry/Documents/Python/YahooStockThing/Wilshire-5000-Stocks-New.csv"
-newfile = "C:/Users/harry/Documents/Python/YahooStockThing/SortedStock.xlsx"
+newfile= Path(__file__).with_name('SortedStock.xlsx')
+print(newfile)
 tickers = si.tickers_sp500()
 today = date.today()
 sixtydays = today + (dt.timedelta(60))
 thirtydays = today + (dt.timedelta(30))
-#today = today.strftime("%Y-%m-%d")
 soon_df = 0
 print(today + (dt.timedelta(30)))
 
@@ -96,9 +96,7 @@ def deleteTickerFromChosen(Removed):
             continue
 
 
-def get_info_on_stock():
-    #y_data = yf.Tickers(company_list)
-    
+def get_info_on_stock():    
     earnings = []
     a=[];b=[];c=[];d=[];e=[]
     soon=[]
@@ -108,7 +106,6 @@ def get_info_on_stock():
         try:
             earning_date = dt.datetime.strftime(si.get_next_earnings_date(tick), "%d/%m/%Y")
             b.append(earning_date)
-        #if si.get_next_earnings_date(tick) > dt.datetime.strptime(thirtydays, "%d/%m/%Y"):
             if dt.datetime.strptime(earning_date, "%d/%m/%Y").date() > sixtydays:
                 price = si.get_live_price(tick)
                 #print(price)
