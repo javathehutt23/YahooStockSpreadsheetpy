@@ -19,6 +19,8 @@ def interaction():
             second = input("Please enter the ticker to be removed ")
             ExcelRuntime.deleteTickerFromChosen(second.upper().strip())
             continue
+        if first == "exit" or first=="e":
+            break
         else:
             print("Invalid input, Try again")
             continue

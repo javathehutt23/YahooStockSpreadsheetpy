@@ -3,7 +3,7 @@ import datetime as dt
 from datetime import date
 import pandas as pd
 
-path = "C:/Users/harry/Documents/Python/YahooStockThing/Wilshire-5000-Stocks-New.csv"
+#path = "C:/Users/harry/Documents/Python/YahooStockThing/Wilshire-5000-Stocks-New.csv"
 newfile = "C:/Users/harry/Documents/Python/YahooStockThing/SortedStock.xlsx"
 tickers = si.tickers_sp500()
 today = date.today()
@@ -14,10 +14,6 @@ soon_df = 0
 print(today + (dt.timedelta(30)))
 
 
-# alternative 1
-
-#ticker_earnings = si.get_next_earnings_date('aapl')
-#print(ticker_earnings)
 
 def refreshStockInfo():
     earning_df, soon_df = get_info_on_stock(tickers)
@@ -29,10 +25,7 @@ def getCurrentChosen():
     excel_data_df = pd.read_excel(newfile, sheet_name='Chosen').values.tolist()
     print(excel_data_df)
     for  tickDate in excel_data_df:
-            print(tickDate)
-            #earning_date = dt.datetime.]strftime(tickDate, "%d/%m/%Y")
-            #print(earning_date)[
-            if dt.datetime.strptime(tickDate[2], "%d/%m/%Y").date() > thirtydays:
+            if dt.datetime.strptime(tickDate[2], "%d/%m/%Y").date() < thirtydays:
                 print(tickDate[1] + " is within 30 days of the earnings release!")
 
 
@@ -129,18 +122,5 @@ def get_info_on_stock():
     earnings = pd.DataFrame(data_all)
     soon = pd.DataFrame(data_soon)
     return earnings, soon
-#get_info_on_stock(ticker)
-#a = ticker.iat[0,0]
-#seperate = a.split(',', 1)[0]
 
-#seperate = tickers['Ticker'].tolist()
-#print(seperate[:6])
-
-#earning_df, soon_df = get_info_on_stock()
-#print(earning_df)
-#print(soon_df)
-#soon_df = pd.Timestamp(earning_df['Date'].where((earning_df['Date'])) < pd.Timestamp(thirtydays))
-
-#print(soon_df)
-#print(si.get_earnings('aapl'))
 
